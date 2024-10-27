@@ -1,4 +1,5 @@
 @import "assets/css/menu.css";
+@import "assets/css/tla-pagination.css";
 
 @tailwind base;
 @tailwind components;

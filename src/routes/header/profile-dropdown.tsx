@@ -1,7 +1,7 @@
 import React from 'react';
 import type { MenuProps } from 'antd';
 import { Dropdown, Space } from 'antd';
-import {UserOutlined} from "@ant-design/icons";
+import { useAppSelector } from "../../hooks";
 
 const items: MenuProps['items'] = [
     {
@@ -19,17 +19,18 @@ const items: MenuProps['items'] = [
     },
 ];
 
-const ProfileDropdown: React.FC = () => (
-    <Dropdown menu={{ items }}>
-        <a onClick={(e) => e.preventDefault()} className={"cursor-pointer "}>
-            <Space>
-                <p>Hi Amos</p>
-                <div className={'h-12 w-12 border rounded-full flex items-center justify-center'}>
-                    <UserOutlined/>
-                </div>
-            </Space>
-        </a>
-    </Dropdown>
-);
+const ProfileDropdown: React.FC = () => {
+    const email = useAppSelector((state) => state.authSlice.email);
+
+    return (
+        <Dropdown menu={{ items }}>
+            <a onClick={(e) => e.preventDefault()} className={"cursor-pointer "}>
+                <Space>
+                    <p>Hi {email?.split("@")[0]}</p>
+                </Space>
+            </a>
+        </Dropdown>
+    )
+};
 
 export default ProfileDropdown;

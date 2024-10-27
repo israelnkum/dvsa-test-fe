@@ -9,6 +9,11 @@ const Icons = {
     vehicle: <TruckOutlined/>
 }
 
+const logout = () => {
+    localStorage.removeItem("persist:root");
+    window.location.replace("/login");
+}
+
 export default function Sidebar() {
     return (
       <div className={"bg-white h-svh relative"}>
@@ -22,6 +27,8 @@ export default function Sidebar() {
                         <NavLink
                             className={({ isActive }) => isActive ? "menu-item-active" : "menu-item"}
                             key={index} to={menu.path}>
+                            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                            {/*@ts-expect-error*/}
                             {menu.icon && Icons[menu.icon]}
                             {menu.label}
                         </NavLink>
@@ -29,7 +36,7 @@ export default function Sidebar() {
                 }
             </div>
         </div>
-          <div className={"logout"}>
+          <div onClick={logout} className={"logout"}>
               LOGOUT
           </div>
       </div>
