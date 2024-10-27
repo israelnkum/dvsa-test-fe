@@ -1,0 +1,12 @@
+@layer components {
+    .menu-item {
+        @apply p-5 hover:bg-gray-100 text-lg flex items-center gap-x-3;
+    }
+    .menu-item-active {
+        @apply p-5 bg-gray-100 text-lg flex items-center gap-x-3;
+    }
+
+    .logout {
+        @apply absolute inset-x-0 bottom-0 z-50 p-5 text-center mx-auto text-lg cursor-pointer hover:bg-gray-200 border-t border-gray-300;
+    }
+}
