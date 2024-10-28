@@ -6,7 +6,6 @@ export const login = createAsyncThunk(
   async (data: Record<any, any>, { rejectWithValue }) => {
     try {
       const res = await api().post("login", data);
-        console.log(data)
       return res.data;
     } catch (err: any) {
       if (!err.response) {

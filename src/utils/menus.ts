@@ -17,4 +17,9 @@ export const Menus: Menu[] = [
         path: MenuLinks.vehicles,
         icon: "vehicle"
     },
+    {
+        label: "Parking Bays",
+        path: MenuLinks.parkingBays,
+        icon: "vehicle"
+    },
 ]

@@ -34,7 +34,11 @@ const initialState: VehicleState = {
 const vehicleSlice = createSlice({
   name: "vehicle",
   initialState,
-  reducers: {},
+  reducers: {
+    updateVehicleFilter: (state, action) => {
+      state.filter = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(
@@ -68,5 +72,7 @@ const vehicleSlice = createSlice({
       );
   },
 });
+
+export const { updateVehicleFilter } = vehicleSlice.actions;
 
 export default vehicleSlice.reducer;

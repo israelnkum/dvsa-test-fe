@@ -1,4 +1,3 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, } from "react-router-dom";
 import './index.css'
@@ -13,6 +12,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { injectStore } from "./utils/api.ts";
 import { persistor, store } from "./state/store.ts";
 import Login from "./pages/auth/login.tsx";
+import ParkingBays from "./pages/parking-bays/parking-bays.tsx";
 
 const router = createBrowserRouter([
     {
@@ -40,6 +40,10 @@ const router = createBrowserRouter([
                 path: MenuLinks.vehicles,
                 element: <Vehicles/>
             },
+            {
+                path: MenuLinks.parkingBays,
+                element: <ParkingBays/>
+            },
         ]
     },
 ]);
@@ -47,11 +51,11 @@ const router = createBrowserRouter([
 injectStore(store);
 
 createRoot(document.getElementById('root')!).render(
-    <StrictMode>
-        <Provider store={store}>
-            <PersistGate persistor={persistor}>
-                <RouterProvider router={router}/>
-            </PersistGate>
-        </Provider>
-    </StrictMode>,
+    // <StrictMode>
+    <Provider store={store}>
+        <PersistGate persistor={persistor}>
+            <RouterProvider router={router}/>
+        </PersistGate>
+    </Provider>
+    // </StrictMode>,
 );

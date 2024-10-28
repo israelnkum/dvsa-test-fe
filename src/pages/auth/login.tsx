@@ -12,9 +12,7 @@ const Login: React.FC = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
-
     const onFinish = (values: any) => {
-        console.log(values)
         setLoading(true);
         dispatch(login(values))
             .then(unwrapResult)

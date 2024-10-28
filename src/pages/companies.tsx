@@ -1,11 +1,12 @@
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { useEffect, useState } from "react";
 import { getAllCompanies } from "../state/companies/companyActions.ts";
-import { unwrapResult } from "@reduxjs/toolkit";
 import TlaBaseTable from "../components/tla-base-table.tsx";
 import Column from "antd/es/table/Column";
 import { Company } from "../types/company.ts";
 import { Button, Space, Spin } from "antd";
+import { updateCompanyFilter } from "../state/companies/companySlice.ts";
+import CompanyTypeFilter from "./filter/company-type-filter.tsx";
 
 export default function Companies() {
     const dispatch = useAppDispatch();
@@ -14,15 +15,16 @@ export default function Companies() {
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         dispatch(getAllCompanies(new URLSearchParams(filter)))
-            .then(unwrapResult)
             .then(() =>  setLoading(false))
             .catch(() => {
               setLoading(false)
             })
-    }, []);
+    }, [filter]);
+
     return (
         <div>
             <Spin spinning={loading}>
+                <CompanyTypeFilter filter={filter} callback={updateCompanyFilter} />
                 <TlaBaseTable numberColumn filterObj={filter} header data={data} meta={meta} callbackFunction={getAllCompanies}>
                     <Column title="Name" render={(record: Company) => (
                         <Space direction={"vertical"}>

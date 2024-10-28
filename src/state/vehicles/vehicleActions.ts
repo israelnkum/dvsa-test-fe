@@ -68,3 +68,21 @@ export const deleteVehicle = createAsyncThunk(
     }
   },
 );
+
+
+export const findParkingPays = createAsyncThunk(
+    "vehicles/parkingBays",
+    async (data: Record<any, any>, { rejectWithValue }) => {
+        try {
+            const res = await api().post("/get-bays", data);
+
+            return res.data.data;
+        } catch (err: any) {
+            if (!err.response) {
+                throw err;
+            }
+
+            throw rejectWithValue(err.response.data);
+        }
+    },
+);

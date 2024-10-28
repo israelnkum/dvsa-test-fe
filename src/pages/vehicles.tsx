@@ -7,6 +7,8 @@ import Column from "antd/es/table/Column";
 import { Spin } from "antd";
 import TlaDelete from "../components/tla-delete.tsx";
 import TlaEdit from "../components/tla-edit.tsx";
+import CompanyTypeFilter from "./filter/company-type-filter.tsx";
+import { updateVehicleFilter } from "../state/vehicles/vehicleSlice.ts";
 
 export default function Vehicles() {
     const dispatch = useAppDispatch();
@@ -20,10 +22,11 @@ export default function Vehicles() {
             .catch(() => {
                 setLoading(false)
             })
-    }, []);
+    }, [filter]);
     return (
         <div>
             <Spin spinning={loading}>
+                <CompanyTypeFilter filter={filter} callback={updateVehicleFilter} />
                 <TlaBaseTable numberColumn filterObj={filter} header data={data} meta={meta} callbackFunction={getAllVehicles}>
                     <Column title="Company" dataIndex={"company"} />
                     <Column title="Make" dataIndex={"make"} />

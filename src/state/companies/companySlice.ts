@@ -34,7 +34,11 @@ const initialState: CompanyState = {
 const companySlice = createSlice({
   name: "company",
   initialState,
-  reducers: {},
+  reducers: {
+    updateCompanyFilter: (state, action) => {
+      state.filter = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(
@@ -68,5 +72,7 @@ const companySlice = createSlice({
       );
   },
 });
+
+export const { updateCompanyFilter } = companySlice.actions
 
 export default companySlice.reducer;
