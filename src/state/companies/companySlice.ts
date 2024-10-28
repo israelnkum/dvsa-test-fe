@@ -11,7 +11,7 @@ import { Company, CompanyState } from "../../types/company.ts";
 const initialState: CompanyState = {
   filter: {
     page: 1,
-    vehicles: false
+    vehicles: 0
   },
   companies: {
     links: {

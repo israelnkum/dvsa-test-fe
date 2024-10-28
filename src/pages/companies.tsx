@@ -4,7 +4,7 @@ import { getAllCompanies } from "../state/companies/companyActions.ts";
 import TlaBaseTable from "../components/tla-base-table.tsx";
 import Column from "antd/es/table/Column";
 import { Company } from "../types/company.ts";
-import { Button, Space, Spin } from "antd";
+import { Space, Spin } from "antd";
 import { updateCompanyFilter } from "../state/companies/companySlice.ts";
 import CompanyTypeFilter from "./filter/company-type-filter.tsx";
 
@@ -26,12 +26,7 @@ export default function Companies() {
             <Spin spinning={loading}>
                 <CompanyTypeFilter filter={filter} callback={updateCompanyFilter} />
                 <TlaBaseTable numberColumn filterObj={filter} header data={data} meta={meta} callbackFunction={getAllCompanies}>
-                    <Column title="Name" render={(record: Company) => (
-                        <Space direction={"vertical"}>
-                            {record.name}
-                            <Button size={"middle"} type={"primary"}>Vehicles</Button>
-                        </Space>
-                    )} />
+                    <Column title="Name" dataIndex={"name"}/>
                     <Column title="Address" dataIndex={"address"} />
                     <Column title="Contact Details" render={(record: Company) =>  (
                         <Space align={"center"} className={"flex justify-between"}>

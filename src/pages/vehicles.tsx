@@ -1,12 +1,10 @@
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { useEffect, useState } from "react";
-import { deleteVehicle, getAllVehicles } from "../state/vehicles/vehicleActions.ts";
+import { getAllVehicles } from "../state/vehicles/vehicleActions.ts";
 import { unwrapResult } from "@reduxjs/toolkit";
 import TlaBaseTable from "../components/tla-base-table.tsx";
 import Column from "antd/es/table/Column";
 import { Spin } from "antd";
-import TlaDelete from "../components/tla-delete.tsx";
-import TlaEdit from "../components/tla-edit.tsx";
 import CompanyTypeFilter from "./filter/company-type-filter.tsx";
 import { updateVehicleFilter } from "../state/vehicles/vehicleSlice.ts";
 
@@ -32,7 +30,7 @@ export default function Vehicles() {
                     <Column title="Make" dataIndex={"make"} />
                     <Column title="Model" dataIndex={"model"} />
                     <Column title="Registration Number" dataIndex={"registration_number"} />
-                    <Column
+                    {/*<Column
                         title={"Action"}
                         render={(record) => (
                             <div className={"flex items-center gap-2"}>
@@ -48,7 +46,7 @@ export default function Vehicles() {
                                 />
                             </div>
                         )}
-                    />
+                    />*/}
                 </TlaBaseTable>
             </Spin>
         </div>
